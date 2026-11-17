@@ -1,0 +1,2 @@
+# Model weights are downloaded automatically at runtime from Hugging Face.
+# This file ensures the directory exists in the repository.
