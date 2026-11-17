@@ -152,7 +152,7 @@ sentiment-analysis-nlp/
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/sentiment-analysis-nlp.git
+git clone https://github.com/Sawaira-saeed/sentiment-analysis-nlp.git
 cd sentiment-analysis-nlp
 
 # Create and activate a virtual environment
@@ -195,7 +195,7 @@ The application will open in your browser at `http://localhost:8501`.
 
 3. **Clone the Space locally:**
    ```bash
-   git clone https://huggingface.co/spaces/YOUR_USERNAME/sentiment-analysis-nlp
+   git clone https://huggingface.co/spaces/Sawaira-saeed/sentiment-analysis-nlp
    ```
 
 4. **Copy project files** into the Space directory (all files except `.venv/` and `tests/`).
@@ -207,7 +207,7 @@ The application will open in your browser at `http://localhost:8501`.
    git push
    ```
 
-6. **Access your app** at `https://YOUR_USERNAME-sentiment-analysis-nlp.hf.space`
+6. **Access your app** at `https://Sawaira-saeed-sentiment-analysis-nlp.hf.space`
 
 ### Notes
 - The free CPU tier is sufficient for DistilBERT inference.
