@@ -265,9 +265,7 @@ Screenshots can be captured by running the application locally:
 
 ## 👤 Author
 
-**AI-NLP-Portfolio**
-
-Built as part of a professional AI/ML portfolio showcasing NLP and transformer model expertise.
+**Sawaira Saeed**
 
 ---
 

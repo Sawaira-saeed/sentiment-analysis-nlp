@@ -1,6 +1,4 @@
-"""
-CSV handling utilities for batch sentiment analysis.
-"""
+"""CSV handling utilities for batch sentiment analysis."""
 
 from __future__ import annotations
 
@@ -17,22 +15,7 @@ def process_csv_batch(
     analyzer: SentimentAnalyzer,
     text_column: Optional[str] = None,
 ) -> pd.DataFrame:
-    """
-    Read a CSV file, run sentiment analysis on each row, and return results.
 
-    Args:
-        file_obj: A file-like object (e.g. Streamlit UploadedFile).
-        analyzer: A loaded SentimentAnalyzer instance.
-        text_column: Name of the column containing text. If None, the first
-            object-type column is used.
-
-    Returns:
-        DataFrame with columns: text, sentiment, confidence, raw_label.
-
-    Raises:
-        ValueError: If the file cannot be parsed or no text column is found.
-        RuntimeError: If the analyzer model is not loaded.
-    """
     if not analyzer.is_loaded():
         raise RuntimeError("Model is not loaded. Call analyzer.load() first.")
 
@@ -76,15 +59,7 @@ def process_csv_batch(
 
 
 def dataframe_to_csv_bytes(df: pd.DataFrame) -> bytes:
-    """
-    Convert a DataFrame to CSV bytes for download.
 
-    Args:
-        df: DataFrame to convert.
-
-    Returns:
-        CSV content as bytes.
-    """
     buffer = io.StringIO()
     df.to_csv(buffer, index=False)
     return buffer.getvalue().encode("utf-8")

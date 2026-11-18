@@ -1,11 +1,4 @@
-"""
-Sentiment analysis model wrapper using Hugging Face Transformers.
-
-Uses DistilBERT fine-tuned on SST-2 (2-class: POSITIVE / NEGATIVE).
-A NEUTRAL class is derived when model confidence falls below a configurable
-threshold, providing a practical 3-class output without requiring a heavier
-3-class model — ideal for resource-constrained deployment (e.g. HF Spaces free tier).
-"""
+"""Sentiment analysis model wrapper using Hugging Face Transformers."""
 
 from __future__ import annotations
 
@@ -31,7 +24,7 @@ MAX_TOKEN_LENGTH = 512
 
 @dataclass
 class SentimentResult:
-    """Container for a single sentiment prediction."""
+
 
     label: str
     confidence: float
@@ -50,13 +43,7 @@ class SentimentResult:
 
 
 class SentimentAnalyzer:
-    """
-    Wrapper around a Hugging Face transformer model for sentiment classification.
 
-    The model is loaded lazily and cached as a class-level singleton so that
-    repeated calls within the same process (e.g. Streamlit reruns) do not
-    reload weights.
-    """
 
     _instance: Optional["SentimentAnalyzer"] = None
 
@@ -80,12 +67,7 @@ class SentimentAnalyzer:
         self._initialized = True
 
     def load(self) -> None:
-        """
-        Download (if necessary) and load the model and tokenizer into memory.
 
-        Raises:
-            RuntimeError: If model loading fails for any reason.
-        """
         if self.model is not None and self.tokenizer is not None:
             return
 
@@ -110,24 +92,12 @@ class SentimentAnalyzer:
             ) from exc
 
     def is_loaded(self) -> bool:
-        """Return True if model and tokenizer are loaded."""
+
         return self.model is not None and self.tokenizer is not None
 
     @torch.no_grad()
     def predict(self, text: str) -> SentimentResult:
-        """
-        Run sentiment inference on a single text input.
 
-        Args:
-            text: Raw user text.
-
-        Returns:
-            SentimentResult with label, confidence, and class probabilities.
-
-        Raises:
-            RuntimeError: If the model has not been loaded.
-            ValueError: If text is empty after cleaning.
-        """
         if not self.is_loaded():
             raise RuntimeError("Model is not loaded. Call .load() first.")
 
@@ -173,18 +143,7 @@ class SentimentAnalyzer:
         )
 
     def predict_batch(self, texts: list[str]) -> list[SentimentResult]:
-        """
-        Run sentiment inference on a list of texts.
 
-        Texts that are empty or cause errors are returned with a NEUTRAL
-        label and zero confidence rather than raising.
-
-        Args:
-            texts: List of raw text strings.
-
-        Returns:
-            List of SentimentResult, one per input.
-        """
         results: list[SentimentResult] = []
         for text in texts:
             try:
@@ -206,13 +165,5 @@ class SentimentAnalyzer:
 def get_analyzer(
     model_name: str = DEFAULT_MODEL_NAME,
 ) -> SentimentAnalyzer:
-    """
-    Factory that returns a singleton SentimentAnalyzer instance.
 
-    Args:
-        model_name: Hugging Face model identifier.
-
-    Returns:
-        Configured (but not necessarily loaded) SentimentAnalyzer.
-    """
     return SentimentAnalyzer(model_name=model_name)

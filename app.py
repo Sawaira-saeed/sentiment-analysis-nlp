@@ -1,12 +1,4 @@
-"""
-Sentiment Analysis Classifier — Streamlit Application
-=====================================================
-
-An interactive NLP application that uses a pretrained DistilBERT transformer
-to classify text sentiment as Positive, Negative, or Neutral.
-
-Author: AI-NLP-Portfolio
-"""
+"""Sentiment Analysis Classifier — Streamlit Application."""
 
 from __future__ import annotations
 
@@ -147,7 +139,7 @@ EXAMPLE_TEXTS = [
 
 @st.cache_resource
 def load_model() -> SentimentAnalyzer:
-    """Load and cache the sentiment analysis model."""
+
     analyzer = get_analyzer()
     analyzer.load()
     return analyzer
@@ -451,7 +443,7 @@ def page_about():
         st.markdown(f"- {tech}")
 
     st.markdown("### 👤 Author")
-    st.markdown("**AI-NLP-Portfolio** — Built for professional AI/ML portfolio showcase.")
+    st.markdown("**Sawaira Saeed**")
 
     st.markdown("---")
     st.markdown(

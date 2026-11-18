@@ -1,6 +1,4 @@
-"""
-Visualization utilities for sentiment analysis results using Plotly.
-"""
+"""Visualization utilities for sentiment analysis results using Plotly."""
 
 from __future__ import annotations
 
@@ -16,15 +14,7 @@ DEFAULT_COLOR = "#3b82f6"
 
 
 def create_probability_chart(probabilities: dict[str, float]) -> go.Figure:
-    """
-    Create a horizontal bar chart showing class probabilities.
 
-    Args:
-        probabilities: Mapping of label -> probability (0–1).
-
-    Returns:
-        Plotly Figure object.
-    """
     labels = list(probabilities.keys())
     values = [v * 100 for v in probabilities.values()]
     colors = [SENTIMENT_COLORS.get(l, DEFAULT_COLOR) for l in labels]
@@ -61,16 +51,7 @@ def create_probability_chart(probabilities: dict[str, float]) -> go.Figure:
 
 
 def create_sentiment_gauge(label: str, confidence: float) -> go.Figure:
-    """
-    Create a semi-circular gauge showing confidence for the predicted sentiment.
 
-    Args:
-        label: Predicted sentiment label.
-        confidence: Confidence score (0–1).
-
-    Returns:
-        Plotly Figure object.
-    """
     color = SENTIMENT_COLORS.get(label, DEFAULT_COLOR)
     pct = confidence * 100
 
@@ -108,15 +89,7 @@ def create_sentiment_gauge(label: str, confidence: float) -> go.Figure:
 
 
 def create_batch_distribution_chart(labels: list[str]) -> go.Figure:
-    """
-    Create a pie chart showing the distribution of sentiments in a batch.
 
-    Args:
-        labels: List of predicted sentiment labels.
-
-    Returns:
-        Plotly Figure object.
-    """
     counts: dict[str, int] = {}
     for l in labels:
         counts[l] = counts.get(l, 0) + 1
